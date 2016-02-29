@@ -1,0 +1,2 @@
+#!/bin/bash
+./plman "$1" playerRules.pl keyControlledPacman -d 0
