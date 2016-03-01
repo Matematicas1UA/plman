@@ -35,3 +35,5 @@ Follow these steps after downloading PLMan.
 ![PLMan Maze 108](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze108.png)
 ![PLMan Maze 121](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze121.png)
 ![PLMan Maze 124](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze124.png)
+![PLMan Maze 401](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze401.png)
+![PLMan Maze 409](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze409.png)
