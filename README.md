@@ -1,5 +1,26 @@
-# plman
-Pacman-like game where the user controls the pacman with Prolog code
+# PLMan
+A Pacman-like game where the user controls the pacman with Prolog code. 
+
+## Requirements
+* Linux, Mac OSX or Windows.
+* A bash shell (On Windows, [Cygwin](https://www.cygwin.com/) is recommended)
+* [SWI-Prolog](http://www.swi-prolog.org/).
+
+## Basic Use
+Follow these steps after downloading PLMan.
+
+1. Open a *bash terminal* and navigate into the PLMan folder (plman script should be there)
+2. Grab a PLMan *map*. There are many examples included under the folder maps/
+3. Create a minimal *solution* file for that map. 
+4. *Launch* PLMan: `./plman mapfile.pl solutionfile.pl mainrule` (`mainrule` is the rule that controls behaviour of pacman in your file).
+
+## Example of a minimal solution file
+
+    %% Include PLMan API interface for developing map solutions
+    :- use_module('pl-man-game/main').
+    
+    %% Define a simple rule that tells PLMan to do noting at each turn
+    my_rule :- doAction(move(none)).
 
 # Screenshots
 ![PLMan Maze 211](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze211.png)
