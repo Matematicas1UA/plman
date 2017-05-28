@@ -82,16 +82,28 @@ getDMap(Map):-
 	d_map(Map).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  addSolidObject([Ap | More])
+%%    Ap: Object Appearance
+%%    More: Other object appearances
 %%  addSolidObject(Ap)
-%%	Ap: Object Appearance
+%%	   Ap: Object Appearance
 %%	
 %%   Adds a new solid object (typically walls) by means
-%%   of its Character appearance
+%%   of its Character appearance. It can add many objects
+%%   by providing a list of objects appearances.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+addSolidObject([]) :- !.
+addSolidObject([Ap | More]):-
+      addSolidObject(Ap)
+   ,  addSolidObject(More).
 addSolidObject(Ap):-
-	d_solidObject(Ap), !.
+      not(is_list(Ap))
+	,  d_solidObject(Ap)
+   ,  !
+   .
 addSolidObject(Ap):-
-	assert(d_solidObject(Ap)).
+      not(is_list(Ap))
+	,  assert(d_solidObject(Ap)).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% isSolid(Ap)
@@ -154,7 +166,7 @@ setDCellContent(X, Y, NCont):-
 	getDMap(Map),
 	updateCellContent(X, Y, NCont, Map, NMap),
 	updateDMap(NMap).
-%************************************************************************************
+%************************************************************************************
 % getDCellContent(X, Y, Cont)
 %    X, Y: Cell Coordinates
 %    Cont: Cell contents
@@ -165,7 +177,7 @@ getDCellContent(X, Y, Cont):-
 	getDMap(Map),
 	getCellContent(X,Y,Map,Cont).
 
-%************************************************************************************
+%************************************************************************************
 % isInsideMap(X, Y)
 %    X, Y: Cell Coordinates
 %
