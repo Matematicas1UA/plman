@@ -81,7 +81,7 @@ entitySequentialMovement(EID):-
 
 % Subrules
 %
-p_moveToDo(none, _, _, _, MOVE_NUM, L_MOVES, _):-
+p_moveToDo(-1, _, _, _, MOVE_NUM, L_MOVES, _):-
 	not(nth0(MOVE_NUM, L_MOVES, _)), !.
 p_moveToDo(PREV, EID, X, Y, MOVE_NUM, L_MOVES, L_MODIF):-
 	not(member(no_repeat_moves, L_MODIF)),
@@ -91,15 +91,15 @@ p_moveToDo(PREV, EID, X, Y, MOVE_NUM, L_MOVES, L_MODIF):-
 	ACTION \= move(none), !.
 p_moveToDo(MOVE_NUM, _, _, _, MOVE_NUM, L_MOVES, _):-
 	nth0(MOVE_NUM, L_MOVES, _), !.
-p_moveToDo(none, _, _, _, _, _, _).
+p_moveToDo(-1, _, _, _, _, _, _).
 
 % calculate which one will be next movement
+p_nextMovement(-1, -1, _, _):- !.
 p_nextMovement(NEXT, PRESENT, L_MOVES, _):-
 	NEXT is PRESENT + 1,
 	nth0(NEXT, L_MOVES, _), !.
-p_nextMovement(NEXT, PRESENT, _, L_MODIF):-
-	member(no_cycle, L_MODIF),
-	NEXT is PRESENT + 2, !.
+p_nextMovement(-1, PRESENT, _, L_MODIF):-
+	member(no_cycle, L_MODIF), !.
 p_nextMovement(0, _, _, _).
 
 % calculate previous movement
