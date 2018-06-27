@@ -29,7 +29,7 @@
 %%    
 %%	Loader of the Prolog-pacman game
 %%	
-:- module(main, [havingObject/0, havingObject/1, see/3, hear/2, play/2, play/3, play/4, replay/2, doAction/1]).
+:- module(main, [havingObject/0, havingObject/1, see/3, hear/2, play/2, play/3, play/4, replay/2]).
 
 % Modules
 :- use_module('pl-man').
