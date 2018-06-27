@@ -98,7 +98,7 @@ p_nextMovement(-1, -1, _, _):- !.
 p_nextMovement(NEXT, PRESENT, L_MOVES, _):-
 	NEXT is PRESENT + 1,
 	nth0(NEXT, L_MOVES, _), !.
-p_nextMovement(-1, PRESENT, _, L_MODIF):-
+p_nextMovement(-1, _, _, L_MODIF):-
 	member(no_cycle, L_MODIF), !.
 p_nextMovement(0, _, _, _).
 
