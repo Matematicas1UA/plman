@@ -50,7 +50,7 @@ language(default, 'english').
 %% properties(Obj, Ancho, Alto, PosX, PosY, ColorMarco)
 %%	
 %
-properties(map, 35, 8, 2, 2, magenta).
+properties(map, 35, 18, 2, 2, magenta).
 properties(msgWindow, 35, 18, 40, 2, white). 
 
 %%
