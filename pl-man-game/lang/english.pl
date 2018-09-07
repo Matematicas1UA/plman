@@ -34,6 +34,7 @@ lang_message(error, 'ERROR').
 lang_message(sleep_time_error, 'Unexpected value passed as sleeptime. It must be a real value or the atom keypress.').
 lang_message(error_loading_behaviours, 'Unexpected error loading behaviours (perhaps some behaviour is misspelled)').
 lang_message(error_loading_behaviour_language_file, 'Unexpected error ocurred while loading language files for behaviour ').
+lang_message(error_not_do_predicate_defined, 'Predicate do/1 undefined. Solutions must deduce actions as do/1 in order to be valid.').
 lang_message(map_file_error, ' Either the map-file does not exists or it is not a map-file ').
 lang_message(botrule_fail, 'Your botrule has ended in a failure state!').
 lang_message(invalid_action, 'Your bot is trying to do an action not specified!').

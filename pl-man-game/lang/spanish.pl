@@ -34,6 +34,7 @@ lang_message(error, 'ERROR').
 lang_message(sleep_time_error, 'Valor inesperado recibido en el parametro sleeptime. Debería ser un valor real o el atomo keypress.').
 lang_message(error_loading_behaviours, 'Ocurrio un error cargando los comportamientos (alguno de los especificados no existe o esta mal escrito)').
 lang_message(error_loading_behaviour_language_file, 'Ocurrio un error cargando los ficheros de idioma para el comportamiento ').
+lang_message(error_not_do_predicate_defined, 'El predicado do/1 no ha sido definido. Los ficheros de solución deben deducir las acciones usando do/1 para ser válidos.').
 lang_message(map_file_error, ' El archivo de mapa no existe o no tiene el formato correcto.' ).
 lang_message(botrule_fail, 'La regla de control de tu personaje ha fracasado!').
 lang_message(invalid_action, 'Tu personaje intenta realizar una acción no especificada!').

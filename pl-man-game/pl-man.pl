@@ -885,23 +885,34 @@ p_drawEntity(_, _, MapX, MapY, location(EntX,EntY,EntAp)):-
 %    
 %   Initializes the environment setting everything to its
 %   initial state.
+%
+% p_checkInitStatus
+%   Checks initial status conditions to ensure that 
+%   everything works as expected
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+p_checkInitStatus :-
+    not( current_predicate(do/1) )
+  , showSystemMsg(system, error, error_not_do_predicate_defined, '', [ halt(1) ]).
+p_checkInitStatus.
+
 gameInit(MapFile):-
-    dynamicProperties(reset),
-    retractall(d_drawing),
-    retractall(d_logging),
-    retractall(d_object(_, _)),
-    retractall(d_entity(_,_,_,_,_)),
-    retractall(d_messageCounter(_)),
-    retractall(d_doAction(_)),
-    retractall(d_doAction(_,_)),
-    assert(d_messageCounter(1)),
-    properties(msgWindow,W,H,_,_,_),
-    clearMsgWindow,
-    setMsgWindowSize(W,H),
-    createGameEntity('@', pacman, 1, 1, active, do, 0),
-    playerStats(reset),
-    loadNewMap(MapFile)
+      dynamicProperties(reset)
+    , retractall(d_drawing)
+    , retractall(d_logging)
+    , retractall(d_object(_, _))
+    , retractall(d_entity(_,_,_,_,_))
+    , retractall(d_messageCounter(_))
+    , retractall(d_doAction(_))
+    , retractall(d_doAction(_,_))
+    , assert(d_messageCounter(1))
+    , properties(msgWindow,W,H,_,_,_)
+    , clearMsgWindow
+    , setMsgWindowSize(W,H)
+    , createGameEntity('@', pacman, 1, 1, active, do, 0)
+    , playerStats(reset)
+    , p_checkInitStatus
+    , loadNewMap(MapFile)
     .
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
