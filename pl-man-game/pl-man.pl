@@ -403,6 +403,15 @@ moveEntity(EID, Map, X, Y):-
     assert(d_entity(EID, Type, Status, ControlRule, location(X,Y,Ap))),
     mainLog(moveEntity(EID, X, Y)).
     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% transparentAppearance(APP)
+%   APP:     Appearance to be considered transparent or not
+%   Defines which appearances are to be considered transparent
+% in order to decide if other entities in the same place are
+% to be seen or not.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+transparentAppearance('').
+transparentAppearance(' ').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % getSeeList(TYPE, X, Y, CONTENT, ADD, WHAT)
@@ -426,23 +435,25 @@ getSeeList(column, X, Y, Map, _, [W]):-
     getCellContent(X, Y, Map, W),
     isSolid(W), !.
 getSeeList(row, X, Y, Row, Add, [H|T]):-
-    entityLocation(EID, X, Y, H), H \= '',
+    entityLocation(EID, X, Y, H), 
+        not(transparentAppearance(H)),
         not(solidEntity(EID)),
     X1 is X + Add,
     getSeeList(row, X1, Y, Row, Add, T), !.
 getSeeList(column, X, Y, Map, Add, [H|T]):-
-    entityLocation(EID, X, Y, H), H \= '',
+    entityLocation(EID, X, Y, H), 
+        not(transparentAppearance(H)),
         not(solidEntity(EID)),
     Y1 is Y + Add,
     getSeeList(column, X, Y1, Map, Add, T), !.
 getSeeList(row, X, Y, Row, Add, [H|T]):-
-        not(entityLocation(_, X, Y, _)),
+        not( (entityLocation(_, X, Y, EAP), not(transparentAppearance(EAP))) ),
     nth0(X, Row, H),
         not(isSolid(H)),
     X1 is X + Add,
     getSeeList(row, X1, Y, Row, Add, T).
 getSeeList(column, X, Y, Map, Add, [H|T]):-
-        not(entityLocation(_, X, Y, _)),
+        not( (entityLocation(_, X, Y, EAP), not(transparentAppearance(EAP))) ),
     getCellContent(X, Y, Map, H),
         not(isSolid(H)),
     Y1 is Y + Add,
