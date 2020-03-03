@@ -1,9 +1,14 @@
 %
-% dynamicProperties is part of cheeseTools, a set of utility rules and primitives 
-% for simplifying common tasks in PROLOG language. This concrete module is for 
-% creating and maintaining lists of properties that may vary in real-time.
+% This file is part of Pl-man
+% Pl-man is a puzzle game inspired in the popular game pacman, and it is mainly aimed
+% to teach programming in PROLOG and introductory courses of Artifial Intelligence.
 %
-% Copyright (C) 2007-2010 Francisco Gallego (ronaldo/Cheesetea) <ronaldo@cheesetea.com>
+% Copyright (C) 2007-2020 Francisco J. Gallego-Durán <fjgallego@ua.es>
+% Departamento de Ciencia de la Computación e Inteligencia Artificial
+% Universidad de Alicante
+% Campus de San Vicente
+% Ap.Correos, 99 
+% 03080, San Vicente del Raspeig (Alicante)
 %
 %   This program is free software: you can redistribute it and/or modify
 %   it under the terms of the GNU General Public License as published by

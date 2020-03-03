@@ -23,24 +23,25 @@ MAIN_FILE=pl-man-game/main.pl       # Archivo principal de ejecución de pl-man
 function main()
 {
         # Antes de nada, comprobar que existe SWI-PROLOG
-        if ! $SWIPL -h &> /dev/null; then 
+        if ! $SWIPL --help &> /dev/null; then 
             echo
-                echo "ATENCION!"
+                echo "WARNING!"
                 echo 
-                echo "No se ha encontrado el intérprete/compilador de SWI-PROLOG ($SWIPL)."
-                echo "Es posible que no lo tengas instalado o que el nombre del ejecutable"
-                echo "sea distinto (no sea $SWIPL)."
+                echo "No compiler/interpreter of SWI-PROLOG ($SWIPL) has been found "
+                echo "Probably this is because you do not have swi-prolog installed or because"
+                echo "the executable command name is different is not '$SWIPL' in your system."
                 echo
-                echo "Si estás seguro de tenerlo instalado, comprueba el nombre del ejecutable,"
-                echo "edita este script de lanzamiento y cambia la linea que dice..."
+                echo "If you are sure that swi-prolog is installed in your system, check for the"
+                echo "proper name of the executable command and edit this launcher script, "
+                echo "changing the line...."
                 echo
                 echo "    SWIPL=swipl"
                 echo
-                echo "por..."
+                echo "by..."
                 echo
-                echo "    SWIPL=nombre_de_tu_ejecutable_de_swi_prolog"
+                echo "    SWIPL=name_of_swi-prolog_executable_command_in_your_system"
                 echo  
-                echo "Si después de esto sigue sin funcionarte, consulta con tu profesor."
+                echo "After this changes, if the script still does not work, send a message to authors."
                 echo
                 exit 2
         fi
@@ -49,7 +50,7 @@ function main()
     processparameters $@
 
     # Compilar
-    echo "Compilando..."
+    echo "Compiling..."
     if [ "$MODE" = "play" ]; then
         $SWIPL -O -g "play('$MAP_FILE', $RULE, $DELAY, [ eval(true), $L_PARAMS ]), halt" -o $OUT_FILE -c $SOL_FILE 2> $COMP_FILE
     else
@@ -58,22 +59,22 @@ function main()
 
     # Comprobar si la compilación ha tenido éxito
     if [ "`grep -e "ERROR" $COMP_FILE`" != "" ]; then
-        echo "*************************************************"
-        echo "*********** ERROR DE COMPILACION ****************"
-        echo "*************************************************"
+        echo "**********************************************"
+        echo "*********** COMPILATION ERROR ****************"
+        echo "**********************************************"
         echo
         cat $COMP_FILE
         exit 10
     elif [ "`grep -e "Warning" $COMP_FILE`" != "" ]; then
-        echo "/////// WARNINGS COMPILANDO \\\\\\\\\\\\\\\\"
+        echo "/////// WARNINGS COMPILING \\\\\\\\\\\\\\\\"
         echo "-------------------------------------"
         echo
         cat $COMP_FILE
     else
-        echo "Archivos compilados con éxito :)"
+        echo "Files compiled successfully :)"
         rm $COMP_FILE
         if (( $EXECUTE_BIN )); then
-            echo "Ejecutando..."
+            echo "Executing..."
             ./$OUT_FILE
         fi
         if (( $DELETE_BIN )); then
@@ -85,47 +86,52 @@ function main()
     exit 0
 }
 
+
 ##
 ## EXPLICACIÓN DE USO POR PANTALLA
 ##
 function usage()
 {
     cat <<TheUsage
-Uso:
+Usage:
     
-$0 <MAP> <SOL> [PARAMETROS]
-$0 -r logfile
+$0 <MAP> <SOL> [ADDITIONAL PARAMS]
+$0 -r <LOGFILE>
     
-Compila el archivo de mapa MAP para que sea resuelto usando el fichero de solucion SOL. Por defecto, lanza la ejecución para trazado paso a paso (modo keypress), con visualizacion activada. 
-     
-Tambien permite reproducir un log de una ejecucion anterior con la opcion -r. Esta opcion modifica el procesado de parametros, haciendo innecesarios los 2 parametros principales MAP y SOL, ya que para reproducir un log no son necesarios.
-    
-El comportamiento por defecto se puede cambiar con los parametros opcionales.
-    
-PARAMETROS:
+Compiles the MAP file along with the SOL solution file. By default, it launches execution \
+in the step-by-step keypress mode, with visualization enabled.
+
+This script also lets reproducing a previous execution log with -r option. In this case, \
+parameters MAP and SOL are unnecessary. Only LOGFILE needs to be provided.
+
+Additional parameters can be used to alter default behaviour.
+
+PARAMETERS:
+ 
   -d S    --delay S
-    Cambia el modo de ejecución paso a paso por un modo de ejecución continua con S segundos de espera entre movimientos.
+    Changes to automatic delayed execution mode. It automatically executes one step each S seconds.
      
   -h      --help
-    Muestra esta pantalla de ayuda. 
+    Shows this help screen.
     
   -l LF   --log-file LF
-    Indica a pl-man que cree un log de la ejecución y lo guarde en el archivo LF para poder reproducirlo en un futuro si es necesario. 
+    Creates an execution logfile (LF) that could later be used for reproduction with -r option.
     
   -m MV   --max-movements MV
-    Ejecuta pl-man restringiendo la cantidad de movimientos disponibles para resolver el mapa a MV movimientos como máximo.
+    It will execute at most MV movements (steps) for this execution. 
     
   -n      --no-draw
-    Ejecuta pl-man sin visualizacion. Solo imprime por pantalla los mensajes de compilacion y las estadisticas finales al terminar.
+    Executes without visualizing results. Only compilation messages and final statistics are shown.
+    WARNING: If execution enters an infinite loop of movements and no --max-movements were set, execution will need to be manually killed.
     
   -o OF   --output OF
-    Por defecto, una vez termina la compilacion de forma exitosa se ejecuta el archivo binario y despues se elimina. El parametro -o --output compila y genera un archivo binario de salida OF que no es ejecutado ni eliminado.
+    Generates an output executable file instead of immediately executing. This executable file has swi-prolog interpreter embedded.
     
-  -r RF   --replay RF
-    Activa el modo de reproduccion de un log de ejecucion anterior. El reproductor de logs no requiere los parámetros de fase, mapa ni regla; solo se limita a leer el log de ejecucion anterior y reproducirlo. 
+  -r LF   --replay LF
+    Replays a previous execution on behalf of its logfile (LF). Simulation enters a manually controlled player that lets you go back and forth into execution steps. 
     
   -t TF   --temporal-file TF
-    Especifica el nombre del archivo temporal donde se almacenarán los resultados de la compilación.  
+    A temporal file is created with the results of the compilation (compilation messages only).
 
 TheUsage
     exit
@@ -159,9 +165,9 @@ function processparameters()
             -d|--delay)
                 # Comprobar que el Delay es un número entero o real válido
                 if [[ ! "$2" =~ (^[0-9]+$)|(^[0-9]+\.[0-9]+$)|(^\.[0-9]+$) ]]; then
-                    echo "ERROR: delay incorrecto"
-                    echo "   -d y --delay deben ir seguidos de un numero entero o real"
-                    echo "   representando los segundos de espera entre movimientos."
+                    echo "ERROR: incorrect delay value"
+                    echo "   -d y --delay has to be followed by an integer or real value"
+                    echo "   representing delay seconds between execution steps."
                     exit 3
                 fi
                 DELAY=$2
@@ -170,7 +176,7 @@ function processparameters()
             -m|--max-movements)
                 # Comprobar que se aporta un parámetro numérico entero
                 if [[ ! "$2" =~ (^[0-9]+$) ]]; then
-                    echo "ERROR: El número máximo de movimientos (-m --max-movements) debe se entero"
+                    echo "ERROR: Max number of movements (-m --max-movements) has to be an integer value"
                     exit 9
                 fi
                 L_PARAMS="$L_PARAMS, max_moves($2)"
@@ -179,7 +185,7 @@ function processparameters()
             -t|--temporal-file)
                 # Comprobar que se aporta un parámetro no vacio como nombre de fichero
                 if [[ ! "$2" =~ (^.+$) ]]; then
-                    echo "ERROR: nombre de fichero temporal de compilación requerido tras -t o --temporal-file"
+                    echo "ERROR: required temporal filename after -t / --temporal-file"
                     exit 11
                 fi
                 COMP_FILE=$2
@@ -188,7 +194,7 @@ function processparameters()
             -r|--replay)
                 # Comprobar que se aporta un parámetro no vacio como nombre de fichero de log
                 if [[ ! "$2" =~ (^.+$) ]]; then
-                    echo "ERROR: nombre de fichero de log requerido tras -r o --replay"
+                    echo "ERROR: log filename required after -r / --replay"
                     exit 4
                 fi
                 SOL_FILE=$2
@@ -198,7 +204,7 @@ function processparameters()
             -l|--log-file)
                 # Comprobar que se aporta un parámetro no vacio como nombre de fichero de log
                 if [[ ! "$2" =~ (^.+$) ]]; then
-                    echo "ERROR: nombre de fichero de solucion requerido tras -l o --log-file"
+                    echo "ERROR: solution filenamen required after -l / --log-file"
                     exit 5
                 fi
                 L_PARAMS="$L_PARAMS, log_file('$2')"
@@ -207,7 +213,7 @@ function processparameters()
             -o|--output)
                 # Comprobar que se aporta un parámetro no vacio como nombre de archivo binario
                 if [[ ! "$2" =~ (^.+$) ]]; then
-                    echo "ERROR: nombre de archivo binario de salida requerido tras -o o --output"
+                    echo "ERROR: binary filenamen required after -o / --output"
                     exit 6
                 fi
                 PROV_OUT_FILE=$2
@@ -228,7 +234,7 @@ function processparameters()
                         # Primer parámetro: Fichero del mapa 
                         # Comprobar que se aporta una ruta al fichero del mapa
                         if [[ ! "$1" =~ (^[^\-].+$) ]]; then
-                            echo "ERROR: Se esperaba una ruta o nombre de fichero de mapa como primer parámetro"
+                            echo "ERROR: A filename was expected as first parameter (MAP, map file)"
                             exit 1
                         fi
                         _PROV_MAP_FILE="$1"
@@ -237,13 +243,13 @@ function processparameters()
                         # Segundo parámetro: Archivo de solución
                         # Comprobar que se aporta un parámetro no vacio como nombre de fichero
                         if [[ ! "$1" =~ (^[^\-].+$) ]]; then
-                            echo "ERROR: Se esperaba ruta o nombre de fichero de solución como segundo parámetro"
+                            echo "ERROR: A filename was expected as second parameter (SOL, solution file)"
                             exit 2
                         fi
                         SOL_FILE="$1"
                     ;;
                     *)
-                        echo "ERROR: Parametro no identificado ($1)"
+                        echo "ERROR: Unknown parameter ($1)"
                         exit 7
                     ;;
                 esac
@@ -258,8 +264,8 @@ function processparameters()
         # Comprobar si están todos los parámetros requeridos
         if [ "$MAIN_PARAMS" != "2" ]; then
             case $MAIN_PARAMS in
-                0) echo "ERROR: Faltan los 2 parámetros principales (mapa MAP y solucion SOL)" ;;
-                1) echo "ERROR: Faltan el nombre del fichero de solucion (SOL)" ;;
+                0) echo "ERROR: Both main parameters are required, map file (MAP) and solution file (SOL)" ;;
+                1) echo "ERROR: Solution filename is required (SOL)" ;;
             esac
             exit 9
         fi

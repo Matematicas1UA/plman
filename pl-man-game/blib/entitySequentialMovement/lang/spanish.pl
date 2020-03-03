@@ -3,7 +3,7 @@
 % Pl-man is a puzzle game inspired in the popular game pacman, and it is mainly aimed
 % to teach programming in PROLOG and introductory courses of Artifial Intelligence.
 %
-% Copyright (C) 2007-2009 Francisco Gallego <ronaldo@cheesetea.com>
+% Copyright (C) 2007-2020 Francisco J. Gallego-Durán <fjgallego@ua.es>
 % Departamento de Ciencia de la Computación e Inteligencia Artificial
 % Universidad de Alicante
 % Campus de San Vicente

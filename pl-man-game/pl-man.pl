@@ -3,7 +3,7 @@
 % Pl-man is a puzzle game inspired in the popular game pacman, and it is mainly aimed
 % to teach programming in PROLOG and introductory courses of Artifial Intelligence.
 %
-% Copyright (C) 2007-2014 Francisco Gallego <ronaldo@cheesetea.com>
+% Copyright (C) 2007-2020 Francisco J. Gallego-Durán <fjgallego@ua.es>
 % Departamento de Ciencia de la Computación e Inteligencia Artificial
 % Universidad de Alicante
 % Campus de San Vicente
@@ -1291,28 +1291,28 @@ play(show_endstats):-
         num_dots(TD),
     Comidos is TD - D,
     Percent is (100 * Comidos / TD),
-    system:writeln('============================================================='),
-    system:writeln('||              ESTADISTICAS DE EJECUCION                    '),
-    system:writeln('|____________________________________________________________'),
-    system:write('| * Estado final:       '),
+    system:writeln('================================================================'),
+    system:writeln('||                  FINAL  GAME  STATISTICS                     '),
+    system:writeln('|_______________________________________________________________'),
+    system:write('| * Final Status:           '),
     ( (MAXMV >= 0, MAXMV =< MO)
-     -> system:writeln('LIMITE DE MOVIMIENTOS SUPERADO :(')
+     -> system:writeln('MAX MOVEMENTS LIMITS REACHED :(')
      ;(D > 0)
-     -> system:writeln('PACMAN HA MUERTO! :(')
-     ;  system:writeln('MAPA SUPERADO! :)')
+     -> system:writeln('PLMAN IS DEAD! :(')
+     ;  system:writeln('MAP SOLVED! :)')
     ),
-    system:writeln('|____________________________________________________________'),
-    maplist(system:write, ['| + Cocos comidos:      ', Comidos, ' / ', TD, ' (', Percent,'%)\n']),
-    maplist(system:write, ['| + Movimientos:        ', MO]),
+    system:writeln('|________________________________________________________________'),
+    maplist(system:write, ['| + Eaten dots:             ', Comidos, ' / ', TD, ' (', Percent,'%)\n']),
+    maplist(system:write, ['| + Movements:              ', MO]),
     (MAXMV >=0 -> maplist(system:write, ['  (Max: ', MAXMV,')\n']) ; system:nl),
-    maplist(system:write, ['| + Inferencias:        ', INF, '\n']),
-    maplist(system:write, ['| + Tiempo CPU:         ', CT, '\n']),
-    system:writeln('|____________________________________________________________'),
-    maplist(system:write, ['| - Colisiones:         ', CO, '\n']),
-    maplist(system:write, ['| - Intentos de accion: ', BA, '\n']),
-    maplist(system:write, ['| - Acciones erroneas:  ', IA, '\n']),
-    maplist(system:write, ['| - Fallos de la regla: ', FA, '\n']),
-    system:writeln('=============================================================').
+    maplist(system:write, ['| + Inferences:             ', INF, '\n']),
+    maplist(system:write, ['| + CPU Time:               ', CT, '\n']),
+    system:writeln('|________________________________________________________________'),
+    maplist(system:write, ['| - Collisions:             ', CO, '\n']),
+    maplist(system:write, ['| - Failed action attempts: ', BA, '\n']),
+    maplist(system:write, ['| - Erroneous actions:      ', IA, '\n']),
+    maplist(system:write, ['| - Prolog rule failures:   ', FA, '\n']),
+    system:writeln('=================================================================').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % replay
