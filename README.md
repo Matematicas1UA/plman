@@ -48,7 +48,6 @@ Also, PLMan has a number of given sensor that can be used to ask about the envir
 ![PLMan Maze 211](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze211.png)
 ![PLMan List Sensor Range](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_list_sensor.png)
 ![PLMan Normal Sensor Range](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_normal_sensor.png)
-![PLMan Code Example](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze140_code.png)
 ![PLMan Maze 149](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze149.png)
 ![PLMan Maze 213](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze213.png)
 ![PLMan Maze 214](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze214.png)
