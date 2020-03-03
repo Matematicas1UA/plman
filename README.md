@@ -68,4 +68,5 @@ Also, PLMan has a number of given sensor that can be used to ask about the envir
 ## License
 
 Copyright (C) 2007-2020 Francisco J. Gallego-Durán <fjgallego@ua.es>
-PLMan is distributed under GNU GPL v3 License.
+
+PLMan is distributed under [GNU GPL v3 License](https://github.com/Matematicas1UA/plman/blob/master/LICENSE).
