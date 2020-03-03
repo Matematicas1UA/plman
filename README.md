@@ -10,19 +10,41 @@ A Pacman-like game where the user controls the pacman with Prolog code.
 Follow these steps after downloading PLMan.
 
 1. Open a *bash terminal* and navigate into the PLMan folder (plman script should be there)
+1.1. If `plman` script does not have execution permission, use chmod.
+   `chmod +x plman`
 2. Grab a PLMan *map*. There are many examples included under the folder maps/
-3. Create a minimal *solution* file for that map. 
-4. *Launch* PLMan: `./plman mapfile.pl solutionfile.pl mainrule` (`mainrule` is the rule that controls behaviour of pacman in your file).
+3. Create a minimal *solution* file for that map. You may use `example_solution.pl`.
+4. *Launch* PLMan: 
+   `./plman mapfile.pl solutionfile.pl`
+4.1. Use SPACE key to advace step by step.
+4.2. Use ESC key to end execution.
 
 ## Example of a minimal solution file
 
     %% Include PLMan API interface for developing map solutions
     :- use_module('pl-man-game/main').
     
-    %% Define a simple rule that tells PLMan to do noting at each turn
-    my_rule :- doAction(move(none)).
+    %% Define a simple fact that makes true the action of PLMan not moving.
+    do(move(none)).
 
-# Screenshots
+## Valid PLMan actions and sensors
+
+Valid plman actions include these:
+* move(DIR)  %% Move 1 step towards DIR. DIR must be one of [ none, left, right, up, down ]
+* get(DIR)   %% Gets an object. DIR must be one of [ here, left, right, up, down ]
+* use(DIR)   %% Uses the object PLMan is holding. DIR must be one of [ here, left, right, up, down ]
+* drop(DIR)  %% Drops the object PLMan is holding. DIR must be one of [ here, left, right, up, down ]
+
+Also, PLMan has a number of given sensor that can be used to ask about the environment, reason, and deduce next action to be performed:
+* see(normal, DIR, OBJ)  %% True if there is an object OBJ in the next cell in the direction DIR. Valid DIRs are [ here, up, down, left, right, up-left, up-right, down-left, down-right ]
+* see(list, DIR, LIST)   %% Unifies with a LIST containing 1 object for each visible cell in the direction DIR. Valid DIRs are [ left, right, up, down ]
+* havingObject           %% True if PLMan is holding an object
+* havingObject(appearance(APP)) %% True if the object that PLMan holds has the appearance OBJ
+* havingObject(name(N))  %% True if the object PLMan holds has the name N
+* hear(normal, SND)      %% True if PLMan hears the sound SND produced by a nearby entity. Sound messages depend on entities and may be different for each new map.
+* hear(list, LIST)       %% Unifies wit a LIST of sounds produced by entities nearby.
+
+## Screenshots
 ![PLMan Maze 211](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze211.png)
 ![PLMan List Sensor Range](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_list_sensor.png)
 ![PLMan Normal Sensor Range](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_normal_sensor.png)
@@ -37,3 +59,8 @@ Follow these steps after downloading PLMan.
 ![PLMan Maze 124](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze124.png)
 ![PLMan Maze 401](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze401.png)
 ![PLMan Maze 409](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze409.png)
+
+## License
+
+Copyright (C) 2007-2020 Francisco J. Gallego-Durán <fjgallego@ua.es>
+PLMan is distributed under GNU GPL v3 License.
