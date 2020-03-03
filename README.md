@@ -10,14 +10,12 @@ A Pacman-like game where the user controls the pacman with Prolog code.
 Follow these steps after downloading PLMan.
 
 1. Open a *bash terminal* and navigate into the PLMan folder (plman script should be there)
-1.1. If `plman` script does not have execution permission, use chmod.
-   `chmod +x plman`
-2. Grab a PLMan *map*. There are many examples included under the folder maps/
-3. Create a minimal *solution* file for that map. You may use `example_solution.pl`.
-4. *Launch* PLMan: 
-   `./plman mapfile.pl solutionfile.pl`
-4.1. Use SPACE key to advace step by step.
-4.2. Use ESC key to end execution.
+   1. If `plman` script does not have execution permission, use `chmod +x plman`
+2. Grab a PLMan *map*. There are many examples included under the folder `maps/`
+3. Create a minimal *solution* file for that map. You may use `example_solution.pl`
+4. *Launch* PLMan: `./plman mapfile.pl solutionfile.pl`
+   1. Use SPACE key to advace step by step.
+   2. Use ESC key to end execution.
 
 ## Example of a minimal solution file
 
@@ -30,19 +28,27 @@ Follow these steps after downloading PLMan.
 ## Valid PLMan actions and sensors
 
 Valid plman actions include these:
-* move(DIR)  %% Move 1 step towards DIR. DIR must be one of [ none, left, right, up, down ]
-* get(DIR)   %% Gets an object. DIR must be one of [ here, left, right, up, down ]
-* use(DIR)   %% Uses the object PLMan is holding. DIR must be one of [ here, left, right, up, down ]
-* drop(DIR)  %% Drops the object PLMan is holding. DIR must be one of [ here, left, right, up, down ]
+
+    move(DIR)  %% Move 1 step towards DIR.           Valid DIRs [ none, left, right, up, down ]
+    get(DIR)   %% Gets an object.                    Valid DIRs [ here, left, right, up, down ]
+    use(DIR)   %% Uses the object PLMan is holding.  Valid DIRs [ here, left, right, up, down ]
+    drop(DIR)  %% Drops the object PLMan is holding. Vaild DIRs [ here, left, right, up, down ]
 
 Also, PLMan has a number of given sensor that can be used to ask about the environment, reason, and deduce next action to be performed:
-* see(normal, DIR, OBJ)  %% True if there is an object OBJ in the next cell in the direction DIR. Valid DIRs are [ here, up, down, left, right, up-left, up-right, down-left, down-right ]
-* see(list, DIR, LIST)   %% Unifies with a LIST containing 1 object for each visible cell in the direction DIR. Valid DIRs are [ left, right, up, down ]
-* havingObject           %% True if PLMan is holding an object
-* havingObject(appearance(APP)) %% True if the object that PLMan holds has the appearance OBJ
-* havingObject(name(N))  %% True if the object PLMan holds has the name N
-* hear(normal, SND)      %% True if PLMan hears the sound SND produced by a nearby entity. Sound messages depend on entities and may be different for each new map.
-* hear(list, LIST)       %% Unifies wit a LIST of sounds produced by entities nearby.
+
+    see(normal, DIR, OBJ)  %% True if there is an object OBJ in the next cell in the direction DIR. 
+                           %% Valid DIRs  [ here, up, down, left, right, up-left, up-right, down-left, down-right ]
+    
+    see(list, DIR, LIST)   %% Unifies with a LIST containing 1 object for each visible cell in the direction DIR. 
+                           %% Valid DIRs are [ left, right, up, down ]
+    
+    havingObject                  %% True if PLMan is holding an object
+    havingObject(appearance(APP)) %% True if the object that PLMan holds has the appearance OBJ
+    havingObject(name(N))         %% True if the object PLMan holds has the name N
+    
+    hear(normal, SND)      %% True if PLMan hears the sound SND produced by a nearby entity. 
+                           %% Sound messages depend on entities and may be different for each new map.
+    hear(list, LIST)       %% Unifies wit a LIST of sounds produced by entities nearby.
 
 ## Screenshots
 ![PLMan Maze 211](https://github.com/Matematicas1UA/plman/blob/master/docs/scrshots/plman_maze211.png)
