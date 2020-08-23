@@ -63,6 +63,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(soccerGoal, [ soccerGoal/1, soccerGoal/6 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_sgStatus/6.
 
 % Initialization

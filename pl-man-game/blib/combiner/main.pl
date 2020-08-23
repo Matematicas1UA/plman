@@ -44,6 +44,8 @@
 % arrows at him at the same time.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(combiner, [ combiner/2, combiner/6 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 
 %%% Combine actions
 combiner(L_BEHAVIOURS, EID):-

@@ -51,6 +51,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(basicTeletransport, [basicTeletransport/1, basicTeletransport/6]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_transportStatus/6.
 
 % Initialization

@@ -53,6 +53,8 @@
 % cycles again.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(entitySequentialMovement, [ entitySequentialMovement/1, entitySequentialMovement/4 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 
 % d_entityStatus(EID, was_on(X, Y, Appearance), NextMoveNum, MoveList, Modifiers)
 :- dynamic d_entityStatus/5.

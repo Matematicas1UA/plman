@@ -60,10 +60,8 @@
 %--------------------
 %   cauldron(create(OID_C, 1, 1, [])),
 %
-%   cauldron(newRecipe(OID_C, '5de244f7178eba27da6149d6e6d4e7e5d1d64360', -1, 
-%                      [ doRecipeActionsYouWant(OID_C) ])),
-%   cauldron(newRecipe(OID_C, '2d3cde6bc5fcfe6f05393fa5b13751fe7dc994ce', 1, 
-%                      [ sendGreetings, destroyWorld ])).
+%   cauldron(newRecipe(OID_C, 979303559, -1, [ doRecipeActionsYouWant(OID_C) ])),
+%   cauldron(newRecipe(OID_C, 1498744391, 1, [ sendGreetings, destroyWorld ])).
 %
 % Creates a cauldron that will accept 2 recipes. The first recipe
 % will be triggered when ingredient list [ing2] is added to the cauldron
@@ -81,6 +79,8 @@
 % of the cauldron.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(cauldron, [cauldron/1]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_cauldronStatus/2.
 :- dynamic d_recipe/5.
 

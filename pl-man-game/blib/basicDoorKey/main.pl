@@ -54,6 +54,8 @@
 % **** ERRORS MAY APPEAR WITH THE ON_OPEN LIST ***
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module('basicDoorKey', [ basicDoorKey/4, basicDoorKey/5 ] ).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_basicDoorKeyST/3.
 
 basicDoorKey(init, OID, ON_OPEN, KEYLIST):-

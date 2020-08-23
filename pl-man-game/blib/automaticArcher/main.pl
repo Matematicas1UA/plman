@@ -86,6 +86,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(automaticArcher, [automaticArcher/1, automaticArcher/6, automaticArcherBullet/1, automaticArcherBullet/3]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_automaticArcherStatus/6.
 :- dynamic d_bulletStatus/2.
 

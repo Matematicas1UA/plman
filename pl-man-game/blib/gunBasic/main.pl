@@ -50,6 +50,9 @@
 % it will autodestroy itself) once shot.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(gunBasic, [ gunBasic/5 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
+
 :- dynamic d_basicGunStatus/4.
 
 % INIT

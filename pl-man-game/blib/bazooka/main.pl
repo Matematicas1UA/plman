@@ -82,7 +82,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(bazooka, [ bazooka/3, bazooka/5, bazooka/6 ]).
-
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 % d_bazookaStatus(OID_BAZOOKA, AMMO, POWER, SPEED)
 :- dynamic d_bazookaStatus/4.
 :- 'pl-man':loadNewBehaviour(missile).

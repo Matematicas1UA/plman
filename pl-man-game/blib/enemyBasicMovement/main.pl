@@ -48,6 +48,8 @@
 % direction of movement.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(enemyBasicMovement, [ enemyBasicMovement/1, enemyBasicMovement/4 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_enemyBMStatus/4.
 
 %% Init

@@ -82,6 +82,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(missile, [ missile/1, missile/4, missile/5, missile/6 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 
 % d_missileStatus(OID_MISSILE, VEL, DIR, POWER)
 :- dynamic d_missileStatus/4.

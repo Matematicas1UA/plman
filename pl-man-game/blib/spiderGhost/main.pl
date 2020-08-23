@@ -55,6 +55,8 @@
 % lefts the wall, with 80% of probability.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(spiderGhost, [ spiderGhost/1, spiderGhost/4 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_spiderGhostSt/2.
 
 %%%

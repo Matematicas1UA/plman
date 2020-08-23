@@ -67,8 +67,7 @@
 % Example
 %--------------------
 %  createGameEntity(EID_0, '#', object, 0, 0, active, passwordChecker, []),
-%  passwordChecker(init, EID_0, [ passwordDigits([EID_1, EID_2]), 
-%                                 password('e7a2ff776a43a54c92aacce86073eb7eb4c09423'),
+%  passwordChecker(init, EID_0, [ passwordDigits([EID_1, EID_2]), password(1111843772),
 %                                 action('pl-man':destroyGameEntity(EID_3)) ] ).
 %
 % Creates a password Checker that waits for a 2-digit password to be correctly set.
@@ -76,7 +75,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(password, [passwordDigit/1, passwordDigit/3, passwordChecker/1, passwordChecker/3]).
-
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 
 :- dynamic d_pass/2.
 
@@ -184,9 +184,10 @@ passwordChecker(concatDigits, [D | LIST], CONCATD, CC) :-
     passwordChecker(concatDigits, LIST, CONCATD, NEWCC).
 
 % Checking if the password is set
-passwordChecker(checkPassword, EID, CONCATD, PASS) :-
+passwordChecker(checkPassword, EID, CONCATD, HASH) :-
+    integer(HASH),
     d_passChecker(EID, PID),
-    term_hash(CONCATD, 1, 2147483647, CHASH), 
+    term_hash(CONCATD, 1, 2147483647, HASH), 
     %variant_sha1(CHASH, PASS),     %%% FIX FOR BAD VARIANT_SHA1/2
     'pl-man':dynamicProperties(get(PID, action(ACT))),
     'pl-man':showLangMessage(password, correct_password, []), 

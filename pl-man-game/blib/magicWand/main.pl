@@ -92,6 +92,9 @@
 % rule 'pl-man':push(OID, EID, X, Y, [ DIR ]) is called.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(magicWand, [magicWand/1, magicWand/5]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
+
 :- dynamic d_wandStatus/2.
 :- dynamic d_spell/4.
 
@@ -200,8 +203,7 @@ magicWand(OID, EID, X, Y,     _) :-
 
 %%% PUSH SPELL
 magicWand(ss(push), init(OID)):-
-    magicWand(newSpell(OID, '423ee4e0e03b49e842c2acc1dac7846c26251a68', 
-                        1, magicWand(ss(push)) ) ).
+    magicWand(newSpell(OID, 739538581, 1, magicWand(ss(push)) ) ).
 magicWand(ss(push), moveEntities(           [],   _)) :- !.
 magicWand(ss(push), moveEntities([EID | L_ENT], DIR)) :- 
     magicWand(ss(push), entityIsNotPushable(EID)), !,
@@ -216,8 +218,7 @@ magicWand(ss(push), entityIsNotPushable(EID)) :-
 
 %%% OPEN SPELL
 magicWand(ss(open), init(OID)):-
-    magicWand(newSpell(OID, 'c870a01096f99a16413208853c9a7879c166f095', 
-                        1, magicWand(ss(open)) ) ).
+    magicWand(newSpell(OID, 1636996084, 1, magicWand(ss(open)) ) ).
 magicWand(ss(open), openEntities(           [],   _)) :- !.
 magicWand(ss(open), openEntities([EID | L_ENT], DIR)) :- 
     magicWand(ss(open), entityIsNotOpenable(EID)), !,

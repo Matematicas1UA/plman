@@ -80,6 +80,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(launchBall, [ launchBall/1, launchBall/3, launchBall/5 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 
 % d_ballStatus(OID_BALL, VX, VY, LIFE)
 :- dynamic d_ballStatus/4.

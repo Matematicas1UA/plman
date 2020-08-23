@@ -83,6 +83,9 @@
 % '.' will also be destroyed.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(mine, [mine/1, mine/5, explosion/1, explosion/4]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
+
 :- dynamic d_mineStatus/5.
 :- dynamic d_explosionStatus/3.
 :- dynamic d_allExplosions/1.

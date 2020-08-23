@@ -92,6 +92,8 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(arithmeticDoor, [arithmeticDoor/6, arithmeticDoorKey/5]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_doorParam/1.
 :- dynamic d_doorStatus/6.
 

@@ -52,6 +52,9 @@
 % using the "Palanca" (OID_P)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(pushBlocks, [ pushBlocks/3, pushBlocks/5] ).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
+
 :- dynamic d_availablePushBlocks/2.
 
 pushBlocks(init, OID, BLOCKLIST):-

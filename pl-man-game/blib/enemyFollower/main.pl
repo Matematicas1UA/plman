@@ -50,6 +50,8 @@
 % stopped after every movement it makes.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(enemyFollower, [ enemyFollower/1, enemyFollower/5 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_enemyFollowerSt/5.
 
 %%%

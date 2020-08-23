@@ -49,6 +49,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(quantumJump, [quantumJump/4, quantumJump/5]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
+
 :- dynamic d_quantumStatus/2.
 
 %%%

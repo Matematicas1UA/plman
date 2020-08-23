@@ -75,6 +75,8 @@
 % the enemyBasicMovement behaviour.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 :- module(respawnPoint, [ respawnPoint/1, respawnPoint/6 ]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- dynamic d_respawnSt/2.
 
 %%%
