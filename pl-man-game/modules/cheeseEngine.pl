@@ -77,11 +77,25 @@ msgWindowWrite(Txt):-
 	msgWindowWrite('_NOT_INSTANTIATED_'), !.
 % Patch for Mac-Version (Supposed to work either in Windows or Linux)
 msgWindowWrite(Txt):-
-        string_to_list(Txt, TxtList),
+	string(Txt), !, 
+   string_to_list(Txt, TxtList),
 	forall(
                 member(M, TxtList),
 	        (char_code(A, M), addCharToWindowBuffer(A))
 	      ).
+% Patch to ensure proper conversion of terms and callables before writing
+msgWindowWrite(Txt):-
+	atomic(Txt), !,
+	atom_string(Txt, Str),
+	msgWindowWrite(Str).
+msgWindowWrite(Txt):-
+	callable(Txt), !,
+	term_string(Txt, Str),
+	msgWindowWrite(Str).
+msgWindowWrite(Txt):-
+	not(atom(Txt)), not(term(Txt)), !,
+	text_to_string(Txt, Str),
+	msgWindowWrite(Str).
 %msgWindowWrite(Txt):-
 %	forall(
 %	       sub_string(Txt,_,1,_,Char), 
