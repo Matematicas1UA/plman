@@ -30,6 +30,8 @@
 %%  Prolog-pacman user programmed game.
 %%  
 :- module('pl-man', [ havingObject/0, havingObject/1, see/3, hear/2, play/2, play/3, play/4, replay/2]).
+:- use_module(library(lists)).
+:- use_module(library(apply)).
 :- use_module('modules/cheeseEngine').
 :- use_module('modules/cheeseText').
 :- use_module('modules/cheeseTools').
