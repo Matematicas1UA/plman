@@ -27,6 +27,5 @@ initMap:-
                 [name(pared_bloqueada), solid(true), static(true), description('Pared bloqueada con contrasenya')]),
         passwordDigit(init, EID_1, [ digits([a,b,c,d,1,2,3,4]), switchPos(1,3) ]),
         passwordDigit(init, EID_2, [ digits([0,1,2,3,4]), switchPos(2,3) ]),
-        passwordChecker(init, EID_0, [ passwordDigits([EID_1, EID_2]), 
-                                       password('916982abc45b40a23c1a0e213e525cb096ae3259'),
+        passwordChecker(init, EID_0, [ passwordDigits([EID_1, EID_2]), password(1111843772),
                                        action('pl-man':destroyGameEntity(EID_3)) ] ).

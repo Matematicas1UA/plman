@@ -7,22 +7,6 @@
 %% 
 %%--------------------------------------------------------------------------------------------
 
-/*
-map(['###########################',
-     '###    ENCHANT CLASS    ###',
-     '###########################',
-     '#E ..................D  #.#',
-     '# E..................u  #.#',
-     'h  E.................m  #.#',
-     'e  .E................b  #.#',
-     'a  ..E...............l  #.#',
-     'r  ...E..............e  #.#',
-     '#  ....E.............d  #.#',
-     '#  .....E............o  #.#',
-     '#  ......E...........r  #.#',
-     '#O....................  P.#',
-     '###########################']).
-*/
 %% MAPA 
 map_format_version(1.1).
 load_behaviour(enemyBasicMovement).
@@ -30,25 +14,27 @@ load_behaviour(entitySequentialMovement).
 load_behaviour(basicDoorKey).
 load_behaviour(magicWand).
 
-map(['###########################',
-     '###    ENCHANT CLASS    ###',
-     '###########################',
-     '#  ..................   #.#',
-     '#  ..................   #.#',
-     'H  ..................   #.#',
-     'E  ..................   #.#',
-     'A  ..................   #.#',
-     'R  ..................   #.#',
-     '#  ..................   #.#',
-     '#  ..................   #.#',
-     '#  ..................   #.#',
-     '#O....................  P.#',
-     '###########################']).
+map(['########################',
+     '###  ENCHANT  CLASS  ###',
+     '########################',
+     '#  ..................  #',
+     '#  ..................  #',
+     '#  ..................  #',
+     '#  ..................  #',
+     '#  ..................  #',
+     '#  ..................  #',
+     '#  ..................  #',
+     '#  ..................  #',
+     '#  ..................  #',
+     '# .................... #',
+     '########################',
+     '#  Use flIpEnDO Spell  #',
+     '########################']).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%% Contenido modificable %%%%%%%%%%%%%%%
 pacman_start(12, 12).     % PLMan puede empezar en cualquier parte que no sea sólida
-num_dots(108).
+num_dots(182).
 %% Regla de inicialización del mapa (Se permiten hasta 4 Puertas y 4 Profesores)
 initMap:- 
 	addSolidObject('#'),
@@ -56,34 +42,37 @@ initMap:-
 	addSolidObject('E'),
 	addSolidObject('A'),
 	addSolidObject('R'),
-        %crearPuerta(OID_P1,  5, 5, '-'),
-        %crearLlave(OID_P1, 5, 3, llave_a, 'a'),
-        
-        %crearPuerta(OID_P2, 13, 5, '-'),
-        %crearLlave(OID_P2, 1, 8, llave_gris, 'g'),
 
-        crearEnemigo(EID_1,  1, 3, enemyBasicMovement, enemigo1, 'M'),
+    crearEnemigo(EID_1,  1, 3, enemyBasicMovement, enemigo1, 'M'),
         enemyBasicMovement(init, EID_1, right-left, ['#','D']),
-	crearEnemigo(EID_2,  12, 4, enemyBasicMovement, enemigo2, 'M'),
+	crearEnemigo(EID_2,  2, 4, enemyBasicMovement, enemigo2, 'M'),
         enemyBasicMovement(init, EID_2, right-left, ['#','u']),
-        /*crearEnemigo(EID_1,  1, 3, enemyBasicMovement, enemigo1, 'M'),
-        enemyBasicMovement(init, EID_1, right-left, ['#','D'])
-	crearEnemigo(EID_1,  1, 3, enemyBasicMovement, enemigo1, 'M'),
-        enemyBasicMovement(init, EID_1, right-left, ['#','D'])
-	crearEnemigo(EID_1,  1, 3, enemyBasicMovement, enemigo1, 'M'),
-        enemyBasicMovement(init, EID_1, right-left, ['#','D'])
-	crearEnemigo(EID_1,  1, 3, enemyBasicMovement, enemigo1, 'M'),
-        enemyBasicMovement(init, EID_1, right-left, ['#','D'])
-	crearEnemigo(EID_1,  1, 3, enemyBasicMovement, enemigo1, 'M'),
-        enemyBasicMovement(init, EID_1, right-left, ['#','D'])*/
+    crearEnemigo(EID_3,  3, 5, enemyBasicMovement, enemigo3, 'M'),
+        enemyBasicMovement(init, EID_3, right-left, ['#','m']),
+	crearEnemigo(EID_4,  4, 6, enemyBasicMovement, enemigo4, 'M'),
+        enemyBasicMovement(init, EID_4, right-left, ['#','b']),
+	crearEnemigo(EID_5,  5, 7, enemyBasicMovement, enemigo5, 'M'),
+        enemyBasicMovement(init, EID_5, right-left, ['#','l']),
+	crearEnemigo(EID_6,  6, 8, enemyBasicMovement, enemigo6, 'M'),
+        enemyBasicMovement(init, EID_6, right-left, ['#','e']),
+	crearEnemigo(EID_7,  7, 9, enemyBasicMovement, enemigo7, 'M'),
+        enemyBasicMovement(init, EID_7, right-left, ['#','d']),
+    crearEnemigo(EID_8,  8,10, enemyBasicMovement, enemigo8, 'M'),
+        enemyBasicMovement(init, EID_8, right-left, ['#','o']),
+    crearEnemigo(EID_9,  9,11, enemyBasicMovement, enemigo9, 'M'),
+        enemyBasicMovement(init, EID_9, right-left, ['#','r']),
 	
-	crearObjetoFlipendo(EID_LD, 20,3, 'D'),
+	crearObjetoFlipendo(_, 20,3, 'D'),
+    crearObjetoFlipendo(_, 20,4, 'u'),
+    crearObjetoFlipendo(_, 20,5, 'm'),
+    crearObjetoFlipendo(_, 20,6, 'b'),
+    crearObjetoFlipendo(_, 20,7, 'l'),
+    crearObjetoFlipendo(_, 20,8, 'e'),
+    crearObjetoFlipendo(_, 20,9, 'd'),
+    crearObjetoFlipendo(_, 20,10, 'o'),
+    crearObjetoFlipendo(_, 20,11, 'r'),
 
-	magicWand(create(EID_V, 22, 12, [ setStandardSpells(true) ])).
-
-        %crearProfesor(EID_PROF2, 13, 6, entitySequentialMovement, flitwick, 'F'),
-        %entitySequentialMovement(init, EID_PROF2, 
-         %       [r,r,r,r,d,d,l,l,l,l,u,u], [ no_repeat_moves ]).
+	magicWand(create(_, 22, 12, [ setStandardSpells(true) ])).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

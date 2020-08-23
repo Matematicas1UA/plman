@@ -84,7 +84,7 @@ crearSombreroSeleccionador(X, Y, CARACTER, REGLA_CONTROL):-
 controlSombrero(EID):-
     % Oir mensajes a nuestro alrededor y guardarnos nombre(NAME) y tipo(TYPE)
     % de quien produce el mensaje(MSG), y mensaje que dice.
-    hear(EID, normal, msg(NAME, TYPE, MSG)), 
+    hear(EID, normal, msg(_NAME, _TYPE, MSG)), 
     
     % Imprimir lo que OIGO, para comprobar que oigo cosas. Eliminar esta
     % llamada cuando todo funcione correctamente

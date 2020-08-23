@@ -1,7 +1,6 @@
 %%
 %% Experimental map to test cauldrons, in map format 1.1.
 %%
-
 map_format_version(1.1).
 load_behaviour(cauldron).
 load_behaviour(enemyBasicMovement).
@@ -28,10 +27,8 @@ initMap:-
                 description('Ingrediente 2')]),
         cauldron(create(OID_C, 1, 1, [])),
         dynamicProperties(set(OID_C, static(false))),
-        cauldron(newRecipe(OID_C, '0ff9da8defb18b04141185cf15243ba7ab56e69b', 1, 
-                          [ 'pl-man':cauldronFinish(OID_C, 1) ])),
-        cauldron(newRecipe(OID_C, 'a4187572e509d8661ced638fc00b27ee10904c62', 10, 
-                          [ 'pl-man':cauldronFinish(OID_C, 2) ])).
+        cauldron(newRecipe(OID_C,  979303559,  1, [ 'pl-man':cauldronFinish(OID_C, 1) ])),
+        cauldron(newRecipe(OID_C, 1498744391, 10, [ 'pl-man':cauldronFinish(OID_C, 2) ])).
         
 % One combination of ingredients
 cauldronFinish(OID, 1) :-

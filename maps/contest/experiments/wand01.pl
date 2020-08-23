@@ -27,7 +27,7 @@ initMap:-
                 appearance(attribs(normal, cyan, default)),
                 description('Objeto molesto 2')]),
         magicWand(create(OID_W, 1, 1, [])),
-        magicWand(newSpell(OID_W, '423ee4e0e03b49e842c2acc1dac7846c26251a68', 1, 'pl-man':push)).
+        magicWand(newSpell(OID_W, 739538581, 1, 'pl-man':push)).
 
 push(_, _, X, Y, [ DIR ]):-
     seeEntities(first, X, Y, DIR, L_ENT), !,

@@ -17,7 +17,7 @@ initMap:-
 	createGameEntity(OID_GUN, 'l', object, 5, 3, inactive, norule, 
 			[name(derringer), solid(false), static(false), use_rule(gunBasic),
 			description('Pistola de una sola bala. Usala bien.'), appearance(attribs(bold, cyan, default))]), 
-	createGameEntity(EID_0, 'E', mortal, 11, 1, inactive, norule, [appearance(attribs(normal, red, default))]),
+	createGameEntity(_EID_0, 'E', mortal, 11, 1, inactive, norule, [appearance(attribs(normal, red, default))]),
 	gunBasic(init, OID_GUN, 1, ['E'], destroy).
 norule(_).
 norule(_,_,_,_,_).
