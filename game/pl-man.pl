@@ -29,7 +29,11 @@
 %%  
 %%  Prolog-pacman user programmed game.
 %%  
-:- module('pl-man', [ havingObject/0, havingObject/1, see/3, hear/2, play/2, play/3, play/4, replay/2]).
+%%
+%--- 2026 - version simplificada see/have ------------------
+:- module('pl-man', [ have/0, have/1, havingObject/0, havingObject/1, see/2, see/3, hear/2, play/2, play/3, play/4, replay/2]).
+%-----------------------------------------------------------
+
 :- use_module(library(lists)).
 :- use_module(library(apply)).
 :- use_module('modules/cheeseEngine').
@@ -54,10 +58,10 @@
 :- language(selected, UserLangName),
    language(default, DefLangName),
    absolute_file_name(UserLangName, 
-                      [file_type(prolog), relative_to('pl-man-game/lang/')], 
+                      [file_type(prolog), relative_to('game/lang/')], 
                       UserLang),
    absolute_file_name(DefLangName, 
-                      [file_type(prolog), relative_to('pl-man-game/lang/')], 
+                      [file_type(prolog), relative_to('game/lang/')], 
                       DefLang),
    ( access_file(UserLang, read) 
      -> load_files(UserLang, [silent(true)])
@@ -232,6 +236,11 @@ mainLog(initialState):-
 %   Succeeds if EID has got an object whose name is NA
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%--- 2026 - version simplificada ------------------
+have         :- havingObject.
+have(AP)     :- havingObject(appearance(AP)).
+have(name(N)):- havingObject(name(N)).
+%--------------------------------------------------
 havingObject:-
     entityType(EID, pacman),
     havingObject(EID, _).
@@ -308,7 +317,7 @@ p_loadBehaviours:-
 p_loadBehaviours:-
     showSystemMsg(system, error, error_loading_behaviours, '', [halt(1)]).
 loadNewBehaviour(BLIB):-
-        atom_concat('pl-man-game/blib/', BLIB, BLIBPATH),
+        atom_concat('game/blib/', BLIB, BLIBPATH),
         p_loadBehaviours_loadLanguage(BLIBPATH), 
         absolute_file_name('main',
         [file_type(prolog), relative_to(BLIBPATH)],
@@ -474,19 +483,34 @@ getSeeList(column, X, Y, Map, Add, [H|T]):-
 %   direction.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Add quantities depending on seeing direction
-xy_seedir(here, 0, 0).
-xy_seedir(up, 0, -1).
-xy_seedir(left, -1, 0).
-xy_seedir(right, 1, 0).
-xy_seedir(down, 0, 1).
-xy_seedir(down-left, -1, 1).
-xy_seedir(down-right, 1, 1).
-xy_seedir(up-left, -1, -1).
-xy_seedir(up-right, 1, -1).
-xy_seedir(left-down, X, Y):- xy_seedir(down-left, X, Y).
-xy_seedir(left-up, X, Y):- xy_seedir(up-left, X, Y).
-xy_seedir(right-down, X, Y):- xy_seedir(down-right, X, Y).
-xy_seedir(right-up, X, Y):- xy_seedir(up-right, X, Y).
+xy_seedir(here      ,  0,  0).
+xy_seedir(up        ,  0, -1).
+xy_seedir(left      , -1,  0).
+xy_seedir(right     ,  1,  0).
+xy_seedir(down      ,  0,  1).
+xy_seedir(down-left , -1,  1).
+xy_seedir(down-right,  1,  1).
+xy_seedir(up-left   , -1, -1).
+xy_seedir(up-right  ,  1, -1).
+xy_seedir(left-down ,  X,  Y):- xy_seedir(down-left , X, Y).
+xy_seedir(left-up   ,  X,  Y):- xy_seedir(up-left   , X, Y).
+xy_seedir(right-down,  X,  Y):- xy_seedir(down-right, X, Y).
+xy_seedir(right-up  ,  X,  Y):- xy_seedir(up-right  , X, Y).
+%--- 2026 - version simplificada see ------------------
+xy_seedir(h  , X, Y) :- xy_seedir(here      , X, Y).
+xy_seedir(u  , X, Y) :- xy_seedir(up        , X, Y).
+xy_seedir(l  , X, Y) :- xy_seedir(left      , X, Y).
+xy_seedir(r  , X, Y) :- xy_seedir(right     , X, Y).
+xy_seedir(d  , X, Y) :- xy_seedir(down      , X, Y).
+xy_seedir(d-l, X, Y) :- xy_seedir(down-left , X, Y).
+xy_seedir(d-r, X, Y) :- xy_seedir(down-right, X, Y).
+xy_seedir(u-l, X, Y) :- xy_seedir(up-left   , X, Y).
+xy_seedir(u-r, X, Y) :- xy_seedir(up-right  , X, Y).
+xy_seedir(l-d, X, Y) :- xy_seedir(left-down , X, Y).
+xy_seedir(l-u, X, Y) :- xy_seedir(left-up   , X, Y).
+xy_seedir(r-d, X, Y) :- xy_seedir(right-down, X, Y).
+xy_seedir(r-u, X, Y) :- xy_seedir(right-up  , X, Y).
+%------------------------------------------------------
 
 % You can see entities or map things, but not both
 entityYouCanSee(EID, X, Y, W):-
@@ -499,6 +523,10 @@ whatYouSee(EID, _, X, Y, W):-
 whatYouSee(EID, Map, X, Y, W):-
     not(entityYouCanSee(EID, X, Y, _)),
     getCellContent(X, Y, Map, W).
+
+%--- 2026 - version simplificada ------------------
+see(DIR, WHAT):- see(normal, DIR, WHAT).
+%--------------------------------------------------
 
 see(MODE, DIR, WHAT):-
     entityType(EID, pacman),
@@ -758,8 +786,16 @@ useObjectTo(EID, DIR, X, Y):-
 %   the entity wants to do.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Offset coordinates depending on direction selected
-p_directionList([d(left, -1, 0), d(right, +1, 0), 
-        d(down, 0, +1), d(up, 0, -1), d(none, 0, 0)]).
+%--- 2026 - version simplificada --------------------
+p_directionList(
+    [
+        d(left,  -1,  0) , d(l, -1,  0), 
+        d(right, +1,  0) , d(r, +1,  0), 
+        d(down,   0, +1) , d(d,  0, +1), 
+        d(up,     0, -1) , d(u,  0, -1), 
+        d(none,   0,  0) , d(n,  0,  0)
+    ]).
+%-----------------------------------------------------
 % Calculate new (X,Y) coordinates depending on direction selected
 p_calculateNewXY(DIR, X, Y, NewX, NewY):-
     p_directionList(DL),

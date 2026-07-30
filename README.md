@@ -20,7 +20,7 @@ Follow these steps after downloading PLMan.
 ## Example of a minimal solution file
 
     %% Include PLMan API interface for developing map solutions
-    :- use_module('pl-man-game/main').
+    :- ['game/main'].
     
     %% Define a simple fact that makes true the action of PLMan not moving.
     do(move(none)).
@@ -36,15 +36,16 @@ Valid plman actions include these:
 
 Also, PLMan has a number of given sensor that can be used to ask about the environment, reason, and deduce next action to be performed:
 
-    see(normal, DIR, OBJ)  %% True if there is an object OBJ in the next cell in the direction DIR. 
+    see(DIR, OBJ)          %% True if there is an object OBJ in the next cell in the direction DIR. 
                            %% Valid DIRs  [ here, up, down, left, right, up-left, up-right, down-left, down-right ]
+                           %% Valid DIRs  [ h, u, d, l, r, u-l, u-r, d-l, d-r ]
     
     see(list, DIR, LIST)   %% Unifies with a LIST containing 1 object for each visible cell in the direction DIR. 
                            %% Valid DIRs are [ left, right, up, down ]
     
-    havingObject                  %% True if PLMan is holding an object
-    havingObject(appearance(APP)) %% True if the object that PLMan holds has the appearance OBJ
-    havingObject(name(N))         %% True if the object PLMan holds has the name N
+    have                   %% True if PLMan is holding an object
+    have(APP)              %% True if the object that PLMan holds has the appearance APP
+    have(name(N))          %% True if the object PLMan holds has the name N
     
     hear(normal, SND)      %% True if PLMan hears the sound SND produced by a nearby entity. 
                            %% Sound messages depend on entities and may be different for each new map.

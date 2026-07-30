@@ -1,4 +1,4 @@
-:- use_module('pl-man-game/main').
+:- ['game/main'].
 
 do(move( left)) :- see(normal,  left, '.').
 do(move(right)) :- see(normal, right, '.').

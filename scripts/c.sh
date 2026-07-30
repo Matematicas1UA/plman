@@ -16,7 +16,7 @@ OUT_FILE=a.out						# Archivo de salida
 EXECUTE_BIN=1						# Ejecutar archivo binario tras compilar?
 DELETE_BIN=1						# Borrar archivo binario tras ejecutar?
 MODE=play						# Modo de ejecución (play/replay)
-MAIN_FILE=pl-man-game/main.pl				# Archivo principal de ejecución de pl-man
+MAIN_FILE=game/main.pl                                  # Archivo principal de ejecución de pl-man
 ##
 ## Función principal del script
 ##
