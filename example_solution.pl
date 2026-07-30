@@ -1,6 +1,6 @@
 :- ['game/main'].
 
-do(move( left)) :- see(normal,  left, '.').
-do(move(right)) :- see(normal, right, '.').
-do(move( down)) :- see(normal,  down, '.').
-do(move(   up)) :- see(normal,    up, '.').
+do(move( left)) :- see( left, '.').
+do(move(right)) :- see(right, '.').
+do(move( down)) :- see( down, '.').
+do(move(   up)) :- see(   up, '.').
