@@ -29,10 +29,10 @@ Follow these steps after downloading PLMan.
 
 Valid plman actions include these:
 
-    move(DIR)  %% Move 1 step towards DIR.           Valid DIRs [ none, left, right, up, down ]
-    get(DIR)   %% Gets an object.                    Valid DIRs [ here, left, right, up, down ]
-    use(DIR)   %% Uses the object PLMan is holding.  Valid DIRs [ here, left, right, up, down ]
-    drop(DIR)  %% Drops the object PLMan is holding. Vaild DIRs [ here, left, right, up, down ]
+    move(DIR)  %% Move 1 step towards DIR.           Valid DIRs [ none, left, right, up, down, n, l, r, u, d ]
+    get(DIR)   %% Gets an object.                    Valid DIRs [ here, left, right, up, down, h, l, r, u, d ]
+    use(DIR)   %% Uses the object PLMan is holding.  Valid DIRs [ here, left, right, up, down, h, l, r, u, d ]
+    drop(DIR)  %% Drops the object PLMan is holding. Vaild DIRs [ here, left, right, up, down, h, l, r, u, d ]
 
 Also, PLMan has a number of given sensor that can be used to ask about the environment, reason, and deduce next action to be performed:
 
