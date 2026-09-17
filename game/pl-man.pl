@@ -524,7 +524,7 @@ whatYouSee(EID, Map, X, Y, W):-
     not(entityYouCanSee(EID, X, Y, _)),
     getCellContent(X, Y, Map, W).
 
-%--- 2026 - version simplificada ------------------
+%--- 2026 - simplified version --------------------
 see(DIR, WHAT):- see(normal, DIR, WHAT).
 %--------------------------------------------------
 
@@ -786,7 +786,13 @@ useObjectTo(EID, DIR, X, Y):-
 %   the entity wants to do.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Offset coordinates depending on direction selected
-%--- 2026 - version simplificada --------------------
+%--- 2026 - simplified version -----------------------
+p_translateAbrev(l, left).
+p_translateAbrev(r, right).
+p_translateAbrev(u, up).
+p_translateAbrev(d, down).
+p_translateAbrev(SAME, SAME).
+    
 p_directionList(
     [
         d(left,  -1,  0) , d(l, -1,  0), 
@@ -802,7 +808,8 @@ p_calculateNewXY(DIR, X, Y, NewX, NewY):-
     member(d(DIR, AddX, AddY), DL),
     NewX is X + AddX, NewY is Y + AddY.
 % Print a message for different attempts of actions to do
-p_printMessageDoAction(MsgType, DIR):-
+p_printMessageDoAction(MsgType, DIR_ABREV):-
+    p_translateAbrev(DIR_ABREV, DIR),
     lang_message(DIR, DIRMSG),
     showSystemMsg(user, normal, MsgType, DIRMSG, []).
 % doEntityAction Clauses
