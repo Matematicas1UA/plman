@@ -3,7 +3,7 @@
 % Pl-man is a puzzle game inspired in the popular game pacman, and it is mainly aimed
 % to teach programming in PROLOG and introductory courses of Artifial Intelligence.
 %
-% Copyright (C) 2007-2020 Francisco J. Gallego-Durán <fjgallego@ua.es>
+% Copyright (C) 2007-2026 Francisco J. Gallego-Durán <fjgallego@ua.es>
 % Departamento de Ciencia de la Computación e Inteligencia Artificial
 % Universidad de Alicante
 % Campus de San Vicente
@@ -809,7 +809,7 @@ p_calculateNewXY(DIR, X, Y, NewX, NewY):-
     NewX is X + AddX, NewY is Y + AddY.
 % Print a message for different attempts of actions to do
 p_printMessageDoAction(MsgType, DIR_ABREV):-
-    p_translateAbrev(DIR_ABREV, DIR),
+    p_translateAbrev(DIR_ABREV, DIR),           %%%--- 2026 - simplified version -----------------------
     lang_message(DIR, DIRMSG),
     showSystemMsg(user, normal, MsgType, DIRMSG, []).
 % doEntityAction Clauses
@@ -822,22 +822,26 @@ doEntityAction(EID, Map, move(DIR)):-
     entityLocation(EID, X, Y, _),
     p_calculateNewXY(DIR, X, Y, X1, Y1),
     checkCollisionsAndUpdate(EID, Map, X1, Y1).
-doEntityAction(EID, _, get(DIR)):-
+doEntityAction(EID, _, get(DIR_ABREV)):-
+    p_translateAbrev(DIR_ABREV, DIR),           %%%--- 2026 - simplified version -----------------------
     p_printMessageDoAction(getting_object, DIR),
     entityLocation(EID, X, Y, _),
     p_calculateNewXY(DIR, X, Y, X1, Y1),
     getObjectFrom(EID, X1, Y1), !.
-doEntityAction(EID, Map, drop(DIR)):-
+doEntityAction(EID, Map, drop(DIR_ABREV)):-
+    p_translateAbrev(DIR_ABREV, DIR),           %%%--- 2026 - simplified version -----------------------
     p_printMessageDoAction(dropping_object, DIR),
     entityLocation(EID, X, Y, _),
     p_calculateNewXY(DIR, X, Y, X1, Y1),
     dropObjectTo(EID, Map, X1, Y1), !.
-doEntityAction(EID, _, use(DIR)):-
+doEntityAction(EID, _, use(DIR_ABREV)):-
+    p_translateAbrev(DIR_ABREV, DIR),           %%%--- 2026 - simplified version -----------------------
     p_printMessageDoAction(using_object, DIR),
     entityLocation(EID, X, Y, _),
     p_calculateNewXY(DIR, X, Y, X1, Y1),
     useObjectTo(EID, DIR, X1, Y1), !.
-doEntityAction(EID, _, use(PRED, DIR)):-
+doEntityAction(EID, _, use(PRED, DIR_ABREV)):-
+    p_translateAbrev(DIR_ABREV, DIR),           %%%--- 2026 - simplified version -----------------------
     p_printMessageDoAction(using_object, DIR),
     entityLocation(EID, X, Y, _),
     p_calculateNewXY(DIR, X, Y, X1, Y1),
